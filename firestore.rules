@@ -1,0 +1,28 @@
+// ============================================================
+// firestore.rules
+// ------------------------------------------------------------
+// Diesen Inhalt kopierst du in der Firebase Console unter
+// Firestore Database -> Regeln (Tab "Rules") komplett hinein
+// und klickst auf "Veröffentlichen".
+//
+// WAS DIESE REGEL MACHT:
+// Der Pfad in Firestore ist: users/{userId}/questionStats/{questionId}
+// Diese Regel erlaubt Lesen/Schreiben NUR, wenn die eingeloggte
+// Person (request.auth.uid) genau die userId ist, unter der die
+// Daten liegen. Niemand kann also die Statistik einer anderen
+// Person lesen oder verändern.
+// ============================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId}/questionStats/{questionId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Alles, was hier nicht ausdrücklich erlaubt ist, wird
+    // standardmäßig blockiert (sicherer Grundzustand).
+  }
+}

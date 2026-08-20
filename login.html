@@ -1,0 +1,1181 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+    Sorgt dafür, dass die Seite auch auf Handy und Tablet
+    korrekt dargestellt wird.
+  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-1 – Anmeldung</title>
+
+    <!-- ============================================================
+       CSS – GESTALTUNG DER SEITE
+       ============================================================
+
+       CSS bestimmt das Aussehen:
+       - Farben
+       - Abstände
+       - Größen
+       - Buttons
+       - Eingabefelder
+       - Fehlermeldungen
+       ============================================================ -->
+
+    <style>
+        /* ------------------------------------------------------------
+       1. GRUNDLEGENDE FARBEN UND EINSTELLUNGEN
+       ------------------------------------------------------------ */
+
+        :root {
+            --bg: #1b1f2a;
+            --card-bg: #ffffff;
+            --text-main: #1b1f2a;
+            --text-muted: #5a6072;
+            --accent: #5b6cff;
+            --accent-hover: #4653d1;
+            /* Farbe für Fehlermeldungen */
+            --error: #d13a3a;
+            /* Farbe für Erfolgsmeldungen */
+            --success: #1f9d55;
+            /* Sehr runde Ecken */
+            --radius: 999px;
+            /* Rundung der weißen Box */
+            --radius-card: 24px;
+        }
+
+        /* ------------------------------------------------------------
+       2. BOX-SIZING
+       ------------------------------------------------------------
+
+       Dadurch werden Padding und Border in die angegebene
+       Breite eines Elements eingerechnet.
+       Das macht das Layout leichter berechenbar.
+       ------------------------------------------------------------ */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* ------------------------------------------------------------
+       3. SEITEN-HINTERGRUND
+       ------------------------------------------------------------ */
+
+        body {
+            margin: 0;
+
+            /* Mindesthöhe = komplette Bildschirmhöhe */
+            min-height: 100vh;
+            /* Inhalt horizontal und vertikal zentrieren */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Hintergrund */
+            background: radial-gradient(circle at top,
+                    #2a3050 0%,
+                    var(--bg) 70%);
+
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            /* Abstand zum Bildschirmrand */
+            padding: 24px;
+        }
+
+        /* ------------------------------------------------------------
+       4. DIE WEISSE LOGIN-BOX
+       ------------------------------------------------------------ */
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            padding: 36px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* ------------------------------------------------------------
+       5. ÜBERSCHRIFT
+       ------------------------------------------------------------ */
+
+        h1 {
+            font-size: 1.6rem;
+            margin: 0 0 4px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+
+        /* Untertitel unter "Lernhub" */
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin: 0 0 28px;
+            font-size: 0.95rem;
+        }
+
+        /* ------------------------------------------------------------
+       6. ANMELDEN / REGISTRIEREN – TABS
+       ------------------------------------------------------------ */
+
+        .tabs {
+            display: flex;
+            background: #f0f1f6;
+            border-radius: var(--radius);
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        /* Beide Tab-Buttons */
+
+        .tabs button {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px 0;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        /* Aktiver Tab */
+        .tabs button[aria-selected="true"] {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ------------------------------------------------------------
+       7. FORMULAR
+       ------------------------------------------------------------ */
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Beschriftungen der Eingabefelder */
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* ------------------------------------------------------------
+       8. EINGABEFELDER
+       ------------------------------------------------------------ */
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 13px 18px;
+            border-radius: var(--radius);
+            border: 2px solid #e2e4ee;
+            font-size: 1rem;
+            outline-offset: 2px;
+        }
+
+
+        /* Sichtbarer Rahmen beim Navigieren mit der Tastatur */
+
+        input:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ------------------------------------------------------------
+       9. PASSWORTREGELN
+       ------------------------------------------------------------
+
+       Diese Klasse gehört zu unserem neuen Hinweistext.
+
+       Die Regeln werden nur angezeigt, wenn die Benutzerin
+       registrieren möchte.
+       ------------------------------------------------------------ */
+
+        .password-rules {
+            margin-top: 8px;
+            padding: 12px 16px;
+            background: #f6f7fb;
+            border-radius: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .password-rules p {
+            margin: 0 0 6px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .password-rules ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .password-rules li {
+            margin: 3px 0;
+        }
+
+        /* ------------------------------------------------------------
+       10. HAUPTBUTTON
+       ------------------------------------------------------------ */
+
+        .primary-btn {
+            margin-top: 8px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 14px 0;
+            border-radius: var(--radius);
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .primary-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .primary-btn:active {
+            transform: scale(0.98);
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ------------------------------------------------------------
+       11. "PASSWORT VERGESSEN"
+       ------------------------------------------------------------ */
+
+        .link-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: right;
+            padding: 0;
+        }
+
+        /* ------------------------------------------------------------
+       12. FEHLER- UND ERFOLGSMELDUNGEN
+       ------------------------------------------------------------ */
+
+        .message {
+            min-height: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-radius: 12px;
+            padding: 0;
+        }
+
+        .message.error {
+            color: var(--error);
+        }
+
+        .message.success {
+            color: var(--success);
+        }
+
+        /* ------------------------------------------------------------
+       13. LADEANZEIGE
+       ------------------------------------------------------------ */
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        /* Animation des Ladeindikators */
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ------------------------------------------------------------
+       14. BARRIEREFREIHEIT
+
+       Wenn jemand im Betriebssystem "reduzierte Bewegung"
+       eingestellt hat, wird die Animation abgeschaltet.
+       ------------------------------------------------------------ */
+
+        @media (prefers-reduced-motion: reduce) {
+            .spinner {
+                animation: none;
+            }
+        }
+    </style>
+
+    //---------------- Verbindung zum Footer -------------------------
+    <link rel="stylesheet" href="/footer-style.css">
+
+</head>
+
+<body>
+
+
+    <!-- ============================================================
+       HTML – DER SICHTBARE INHALT
+       ============================================================
+
+       HTML beschreibt die Struktur der Seite.
+
+       Hier befinden sich:
+       - Überschrift
+       - Tabs
+       - Eingabefelder
+       - Passwortregeln
+       - Buttons
+       - Meldungen
+       ============================================================ -->
+
+    <main class="card">
+        <!-- Überschrift -->
+        <h1>Lernhub</h1>
+        <p class="subtitle">
+            Melde dich an, um dein Quiz zu starten.
+        </p>
+
+        <!-- ==========================================================
+         ANMELDEN / REGISTRIEREN
+         ========================================================== -->
+
+        <div class="tabs" role="tablist" aria-label="Anmeldemodus">
+
+            <!-- Anmelden ist beim Öffnen standardmäßig aktiv -->
+
+            <button id="tab-login" role="tab" aria-selected="true" type="button">
+                Anmelden
+            </button>
+
+            <!-- Registrierung -->
+            <button id="tab-register" role="tab" aria-selected="false" type="button">
+                Registrieren
+            </button>
+        </div>
+
+        <!-- ==========================================================
+         FORMULAR
+         ========================================================== -->
+
+        <form id="auth-form" novalidate>
+            <!-- --------------------------------------------------------
+           E-MAIL
+           -------------------------------------------------------- -->
+
+            <div>
+                <label for="email">
+                    E-Mail-Adresse
+                </label>
+
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+
+            <!-- --------------------------------------------------------
+           PASSWORT
+           -------------------------------------------------------- -->
+
+            <div>
+                <label for="password">
+                    Passwort
+                </label>
+                <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8">
+
+                <!-- ======================================================
+             PASSWORTREGELN
+
+             hidden bedeutet:
+             Bei "Anmelden" ist dieser Bereich unsichtbar.
+
+             JavaScript entfernt hidden beim Wechsel zu
+             "Registrieren".
+             ====================================================== -->
+
+                <div id="password-rules" class="password-rules" hidden>
+                    <p>Das Passwort muss enthalten:</p>
+                    <ul>
+                        <li>mindestens 8 Zeichen</li>
+                        <li>mindestens einen Großbuchstaben</li>
+                        <li>mindestens einen Kleinbuchstaben</li>
+                        <li>mindestens eine Zahl</li>
+                        <li>mindestens ein Sonderzeichen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- --------------------------------------------------------
+           PASSWORT BESTÄTIGEN
+
+           Dieses Feld wird erst bei Registrierung angezeigt.
+           -------------------------------------------------------- -->
+
+            <div id="password-confirm-wrapper" hidden>
+
+                <label for="password-confirm">
+                    Passwort bestätigen
+                </label>
+
+                <input type="password" id="password-confirm" name="password-confirm" autocomplete="new-password"
+                    minlength="8">
+            </div>
+
+            <!-- --------------------------------------------------------
+           PASSWORT VERGESSEN
+           --------------------------------------------------------
+
+           Dieses Element gehört momentan zum Login.
+           -------------------------------------------------------- -->
+            <button type="button" id="forgot-password-btn" class="link-btn">
+                Passwort vergessen?
+            </button>
+
+            <!-- --------------------------------------------------------
+           ABSENDEN
+           -------------------------------------------------------- -->
+
+            <button type="submit" class="primary-btn" id="submit-btn">
+                <span id="submit-label">
+                    Anmelden
+                </span>
+
+            </button>
+
+            <!-- --------------------------------------------------------
+           STATUSMELDUNG
+
+           JavaScript schreibt hier später hinein:
+           - Fehler
+           - Erfolg
+           - Hinweise
+           -------------------------------------------------------- -->
+
+            <p class="message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <!-- ============================================================
+       JAVASCRIPT – FUNKTIONALITÄT
+       ============================================================
+
+       JavaScript sorgt dafür, dass die Seite etwas tut.
+
+       Hier passiert:
+       - Firebase wird geladen
+       - Login wird durchgeführt
+       - Registrierung wird durchgeführt
+       - Tabs werden umgeschaltet
+       - Passwörter werden geprüft
+       - Fehlermeldungen werden angezeigt
+       ============================================================ -->
+
+    <script type="module">
+
+        // ============================================================
+        // 1. FIREBASE IMPORTIEREN
+        // ============================================================
+
+        /*
+          initializeApp verbindet unsere Webseite
+          mit unserem Firebase-Projekt.
+        */
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+        /*
+          Diese Funktionen kommen aus Firebase Authentication.
+          getAuth:
+            Verbindung zur Firebase-Authentifizierung.
+          createUserWithEmailAndPassword:
+            Erstellt ein neues Benutzerkonto.
+          signInWithEmailAndPassword:
+            Meldet einen vorhandenen Benutzer an.
+          sendPasswordResetEmail:
+            Verschickt eine E-Mail zum Zurücksetzen des Passworts.
+          onAuthStateChanged:
+            Erkennt, ob bereits jemand angemeldet ist.
+        */
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail,
+            onAuthStateChanged,
+            sendEmailVerification,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+        /*
+          App Check schützt die Anwendung vor automatisierten
+          Bots und Missbrauch.
+          WICHTIG:
+          Der Site-Key steht aktuell noch auf dem Platzhalter.
+          Das bearbeiten wir später separat.
+        */
+
+        import {
+            initializeAppCheck,
+            ReCaptchaV3Provider
+        } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app-check.js";
+
+        /*
+          Unsere eigene Konfigurationsdatei.
+          Dort stehen die Firebase-Projektdaten.
+          Wir holen uns daraus:
+            firebaseConfig
+            recaptchaSiteKey
+        */
+
+        import {
+            firebaseConfig,
+            recaptchaSiteKey
+        } from "./firebase-config.js";
+
+        // ============================================================
+        // 2. FIREBASE STARTEN
+        // ============================================================
+
+        /*
+          initializeApp() verbindet die Webseite
+          mit unserem Firebase-Projekt.
+        */
+        const app = initializeApp(firebaseConfig);
+        /*
+          getAuth() aktiviert Firebase Authentication
+          für unsere Anwendung.
+        */
+        const auth = getAuth(app);
+
+        // ============================================================
+        // 3. APP CHECK AKTIVIEREN
+        // ============================================================
+
+        /*
+          App Check wird mit reCAPTCHA v3 verbunden.
+          Wenn der Site-Key noch ein Platzhalter ist,
+          entstehen die bekannten App-Check-Fehler.
+          Das ist ein separates Thema und wird später eingerichtet.
+        */
+
+        initializeAppCheck(app, {
+
+            provider: new ReCaptchaV3Provider(
+                recaptchaSiteKey
+            ),
+
+            isTokenAutoRefreshEnabled: true
+        });
+
+        // ============================================================
+        // 4. HTML-ELEMENTE HOLEN
+        // ============================================================
+
+        /*
+          document.getElementById() sucht ein HTML-Element
+          anhand seiner ID.
+    
+          Dadurch können wir später mit JavaScript
+          auf diese Elemente zugreifen.
+        */
+
+        const form =
+            document.getElementById("auth-form");
+        const emailInput =
+            document.getElementById("email");
+        const passwordInput =
+            document.getElementById("password");
+        const confirmWrapper =
+            document.getElementById("password-confirm-wrapper");
+        const confirmInput =
+            document.getElementById("password-confirm");
+        const passwordRules =
+            document.getElementById("password-rules");
+        const submitBtn =
+            document.getElementById("submit-btn");
+        const submitLabel =
+            document.getElementById("submit-label");
+        const messageEl =
+            document.getElementById("form-message");
+        const tabLogin =
+            document.getElementById("tab-login");
+        const tabRegister =
+            document.getElementById("tab-register");
+        const forgotBtn =
+            document.getElementById("forgot-password-btn");
+
+        // ============================================================
+        // 5. AKTUELLEN MODUS SPEICHERN
+        // ============================================================
+
+        /*
+          Beim Start befinden wir uns im Login-Modus.
+          Mögliche Werte:
+            "login"
+            "register"
+        */
+        let mode = "login";
+
+        // ============================================================
+        // 6. ZWISCHEN LOGIN UND REGISTRIERUNG WECHSELN
+        // ============================================================
+
+        function setMode(newMode) {
+            /*
+              Wir speichern den neuen Modus.
+            */
+            mode = newMode;
+
+            /*
+              Prüfen, ob gerade Registrierung aktiv ist.
+            */
+            const isRegister =
+                mode === "register";
+            /*
+              aria-selected teilt Browsern und
+              Screenreadern mit, welcher Tab aktiv ist.
+            */
+
+            tabLogin.setAttribute(
+                "aria-selected",
+                String(!isRegister)
+            );
+            tabRegister.setAttribute(
+                "aria-selected",
+                String(isRegister)
+            );
+
+            /*
+              Passwort-Bestätigung nur bei Registrierung anzeigen.
+            */
+
+            confirmWrapper.hidden = !isRegister;
+
+            /*
+              Bei Registrierung wird das zweite Passwortfeld
+              verpflichtend.
+            */
+            confirmInput.required = isRegister;
+
+            /*
+              Passwortregeln nur bei Registrierung anzeigen.
+            */
+            passwordRules.hidden = !isRegister;
+
+            /*
+              Der Text des Hauptbuttons verändert sich.
+            */
+            submitLabel.textContent =
+                isRegister
+                    ? "Konto erstellen"
+                    : "Anmelden";
+
+            /*
+              "Passwort vergessen?" macht nur beim Login Sinn.
+            */
+            forgotBtn.style.display =
+                isRegister
+                    ? "none"
+                    : "inline-block";
+
+            /*
+              Alte Fehlermeldung löschen.
+            */
+            clearMessage();
+        }
+
+
+        /*
+          Klick auf "Anmelden".
+        */
+        tabLogin.addEventListener(
+            "click",
+            () => setMode("login")
+        );
+
+        /*
+          Klick auf "Registrieren".
+        */
+
+        tabRegister.addEventListener(
+            "click",
+            () => setMode("register")
+        );
+
+        // ============================================================
+        // 7. MELDUNGEN ANZEIGEN
+        // ============================================================
+
+        function showMessage(text, type) {
+            /*
+              text = Nachricht
+      
+              type = "error" oder "success"
+            */
+            messageEl.textContent = text;
+            messageEl.className =
+                "message " + type;
+        }
+
+
+        /*
+          Nachricht löschen.
+        */
+        function clearMessage() {
+            messageEl.textContent = "";
+            messageEl.className = "message";
+        }
+
+        // ============================================================
+        // 8a. PASSWORT PRÜFEN
+        // ============================================================
+
+        /*
+          Diese Funktion prüft die gewünschten Regeln.
+    
+          Sie liefert:
+            true  = Passwort ist gültig
+            false = Passwort ist ungültig
+        */
+        function isValidPassword(password) {
+
+            /*
+              Mindestens 8 Zeichen.
+            */
+            const hasMinLength =
+                password.length >= 8;
+            /*
+              Mindestens ein Großbuchstabe.
+            */
+            const hasUppercase =
+                /[A-Z]/.test(password);
+            /*
+              Mindestens ein Kleinbuchstabe.
+            */
+            const hasLowercase =
+                /[a-z]/.test(password);
+            /*
+              Mindestens eine Zahl.
+            */
+            const hasNumber =
+                /[0-9]/.test(password);
+            /*
+              Mindestens ein Sonderzeichen.
+      
+              Alles, was kein Buchstabe und keine Zahl ist,
+              wird hier als Sonderzeichen akzeptiert.
+            */
+            const hasSpecialCharacter =
+                /[^A-Za-z0-9]/.test(password);
+            /*
+              Nur wenn ALLE Bedingungen erfüllt sind,
+              ist das Passwort gültig.
+            */
+            return (
+                hasMinLength &&
+                hasUppercase &&
+                hasLowercase &&
+                hasNumber &&
+                hasSpecialCharacter
+            );
+        }
+        // ============================================================
+        // 8B. E-MAIL-FORMAT PRÜFEN
+        // ============================================================
+
+        /*
+          Einfache Prüfung, ob die Eingabe wie eine gültige
+          E-Mail-Adresse aussieht (z. B. "name@domain.de").
+          Ersetzt nicht die Prüfung durch Firebase, fängt aber
+          offensichtlich falsche Eingaben vorher ab.
+        */
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ============================================================
+        // 9. FIREBASE-FEHLER IN VERSTÄNDLICHES DEUTSCH ÜBERSETZEN
+        // ============================================================
+        function translateError(errorCode) {
+
+            /*
+              Firebase liefert technische Fehlercodes.
+          
+              Wir übersetzen diese Codes in verständliche
+              Nachrichten für die Benutzerin.
+            */
+            const map = {
+                // --------------------------------------------------------
+                // LOGIN
+                // --------------------------------------------------------
+
+                /*
+                  Aus Sicherheitsgründen verwenden wir bei diesen beiden
+                  Fehlern dieselbe Nachricht.
+            
+                  So erfährt niemand, ob eine bestimmte E-Mail-Adresse
+                  überhaupt bei Lernhub registriert ist.
+                */
+
+                "auth/user-not-found":
+                    "Ungültige Eingabe. Bitte überprüfe deine E-Mail-Adresse und dein Passwort.",
+                "auth/wrong-password":
+                    "Ungültige Eingabe. Bitte überprüfe deine E-Mail-Adresse und dein Passwort.",
+                "auth/invalid-credential":
+                    "Ungültige Eingabe. Bitte überprüfe deine E-Mail-Adresse und dein Passwort.",
+
+                // --------------------------------------------------------
+                // E-MAIL
+                // --------------------------------------------------------
+
+                "auth/invalid-email":
+                    "Bitte gib eine gültige E-Mail-Adresse ein.",
+                "auth/email-already-in-use":
+                    "Für diese E-Mail-Adresse existiert bereits ein Konto.",
+
+                // --------------------------------------------------------
+                // PASSWORT
+                // --------------------------------------------------------
+
+                "auth/weak-password":
+                    "Das Passwort erfüllt die erforderlichen Sicherheitsregeln.",
+                // --------------------------------------------------------
+                // ZU VIELE VERSUCHE
+                // --------------------------------------------------------
+
+                "auth/too-many-requests":
+                    "Zu viele Versuche. Bitte warte kurz und versuche es erneut.",
+                // --------------------------------------------------------
+                // NETZWERK
+                // --------------------------------------------------------
+                "auth/network-request-failed":
+                    "Keine Internetverbindung. Bitte prüfe deine Verbindung."
+            };
+
+            /*
+              Wenn Firebase einen bekannten Fehlercode liefert,
+              verwenden wir die dazugehörige deutsche Nachricht.
+              Wenn wir den Fehler nicht kennen, zeigen wir eine
+              allgemeine Fehlermeldung.
+            */
+
+            return (
+                map[errorCode] ||
+                "Da hat etwas nicht gestimmt. Bitte versuche es erneut."
+            );
+        }
+
+
+        // ============================================================
+        // 10. FORMULAR ABSENDEN
+        // ============================================================
+        form.addEventListener(
+            "submit",
+            async (event) => {
+                console.log("FORMULAR WURDE ABGESCHICKT");
+
+                /*
+                  Verhindert das normale Absenden eines HTML-Formulars.
+                  Sonst würde der Browser die Seite neu laden.
+                */
+                event.preventDefault();
+
+                /*
+                  Alte Meldungen entfernen.
+                */
+                clearMessage();
+
+                /*
+                  Werte aus den Eingabefeldern holen.
+                */
+                const email =
+                    emailInput.value.trim();
+                const password =
+                    passwordInput.value;
+
+                // ========================================================
+                // 10A0. GRUNDVALIDIERUNG (LOGIN + REGISTRIERUNG)
+                // ========================================================
+
+                /*
+                  Diese Prüfung läuft in BEIDEN Modi und fängt leere
+                  oder offensichtlich falsche Eingaben ab, bevor
+                  Firebase überhaupt kontaktiert wird.
+                */
+
+                if (!email || !isValidEmail(email)) {
+                    showMessage(
+                        "Ungültige Eingabe. Bitte gib eine gültige E-Mail-Adresse ein.",
+                        "error"
+                    );
+                    return;
+                }
+
+                if (!password) {
+                    showMessage(
+                        "Ungültige Eingabe. Bitte gib dein Passwort ein.",
+                        "error"
+                    );
+                    return;
+                }
+
+                // ========================================================
+                // 10A. REGISTRIERUNG
+                // ========================================================
+
+                if (mode === "register") {
+                    /*
+                      Zuerst prüfen wir die Passwortregeln.
+                      Das passiert noch VOR Firebase.
+                    */
+
+                    if (!isValidPassword(password)) {
+                        showMessage(
+                            "Das Passwort erfüllt noch nicht alle Anforderungen.",
+                            "error"
+                        );
+                        return;
+                    }
+
+                    /*
+                      Jetzt prüfen wir, ob beide Passwortfelder
+                      identisch sind.
+                    */
+                    if (
+                        password !== confirmInput.value
+                    ) {
+                        showMessage(
+                            "Die Passwörter stimmen nicht überein.",
+                            "error"
+                        );
+                        return;
+                    }
+                }
+
+                // ========================================================
+                // 10B. BUTTON SPERREN
+                // ========================================================
+                /*
+                  Verhindert, dass jemand mehrfach auf
+                  "Konto erstellen" klickt.
+                */
+
+                submitBtn.disabled = true;
+                /*
+                  Ladeanzeige anzeigen.
+                */
+                submitLabel.innerHTML =
+                    (
+                        mode === "register"
+                            ? "Konto wird erstellt"
+                            : "Anmeldung läuft"
+                    ) +
+                    '<span class="spinner" aria-hidden="true"></span>';
+
+                // ========================================================
+                // 10C. FIREBASE AUFRUF
+                // ========================================================
+
+                try {
+                    if (mode === "register") {
+                        const credential =
+                            await createUserWithEmailAndPassword(
+                                auth,
+                                email,
+                                password
+                            );
+
+                        /*
+                          Bestätigungs-E-Mail verschicken.
+                          url = wohin Firebase nach dem Klick auf den
+                          Link zurückleitet.
+                        */
+                        await sendEmailVerification(
+                            credential.user,
+                            { url: window.location.href }
+                        );
+
+                        /*
+                          Registrierung erstellt automatisch eine Sitzung.
+                          Die wollen wir hier nicht, solange die E-Mail
+                          nicht bestätigt ist.
+                        */
+                        await signOut(auth);
+
+                        showMessage(
+                            "Konto erstellt! Bitte bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben.",
+                            "success"
+                        );
+
+                        setMode("login");
+                        submitBtn.disabled = false;
+                        return;
+
+                    } else {
+                        const credential =
+                            await signInWithEmailAndPassword(
+                                auth,
+                                email,
+                                password
+                            );
+
+                        if (!credential.user.emailVerified) {
+                            await signOut(auth);
+                            showMessage(
+                                "Bitte bestätige zuerst deine E-Mail-Adresse. Schau in dein Postfach.",
+                                "error"
+                            );
+                            submitBtn.disabled = false;
+                            setMode(mode);
+                            return;
+                        }
+
+                        showMessage(
+                            "Anmeldung erfolgreich! Du wirst weitergeleitet …",
+                            "success"
+                        );
+                    }
+
+                    window.location.href =
+                        "quiz.html";
+                } catch (error) {
+
+
+                    // ======================================================
+                    // 10D. WEITERLEITUNG
+                    // ======================================================
+                    /*
+                      Nach erfolgreicher Registrierung oder Anmeldung
+                      geht es momentan direkt zum Quiz.
+                    */
+
+                    console.log("FIREBASE LOGIN FEHLER:", error);
+                    /*
+                      Firebase hat einen Fehler zurückgegeben.
+                      Wir übersetzen den technischen Fehlercode
+                      in eine verständliche Nachricht.
+                    */
+                    showMessage(
+                        translateError(error.code),
+                        "error"
+                    );
+
+                    /*
+                      Button wieder aktivieren.
+                    */
+
+                    submitBtn.disabled = false;
+                    /*
+                      Buttontext wieder herstellen.
+                    */
+                    setMode(mode);
+                }
+
+            }
+        );
+
+        // ============================================================
+        // 11. PASSWORT VERGESSEN
+        // ============================================================
+
+        forgotBtn.addEventListener(
+            "click",
+            async () => {
+
+                /*
+                  E-Mail-Adresse aus dem Formular holen.
+                */
+                const email =
+                    emailInput.value.trim();
+
+                /*
+                  Ohne E-Mail-Adresse wissen wir nicht,
+                  wohin Firebase die Reset-Mail schicken soll.
+                */
+                if (!email) {
+                    showMessage(
+                        "Bitte gib zuerst deine E-Mail-Adresse ein.",
+                        "error"
+                    );
+                    return;
+                }
+                try {
+
+                    /*
+                      Firebase verschickt die
+                      Passwort-zurücksetzen-E-Mail.
+                    */
+                    await sendPasswordResetEmail(
+                        auth,
+                        email
+                    );
+
+                    showMessage(
+                        "E-Mail zum Zurücksetzen wurde verschickt.",
+                        "success"
+                    );
+
+                } catch (error) {
+
+                    showMessage(
+                        translateError(error.code),
+                        "error"
+                    );
+                }
+            }
+        );
+
+
+        // ============================================================
+        // 12. BEREITS EINGELOGGTE BENUTZER
+        // ============================================================
+
+        /*
+          Firebase beobachtet den Anmeldestatus.
+          Wenn bereits ein Benutzer angemeldet ist,
+          wird direkt zum Quiz weitergeleitet.
+        */
+
+        onAuthStateChanged(
+            auth,
+            (user) => {
+                if (user && user.emailVerified) {
+                    window.location.href =
+                        "quiz.html";
+                }
+            }
+        );
+
+
+    </script>
+
+    //-------------- Verbindung zum Footer -------------------------
+    <script src="/footer-config.js"></script>
+    <script src="/footer-app.js" defer></script>
+
+</body>
+
+</html>
+```
