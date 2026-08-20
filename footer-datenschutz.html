@@ -1,22 +1,355 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung – Lern-Hub</title>
-    <link rel="stylesheet" href="/footer-style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung – Lern-Hub</title>
+
+  <link rel="stylesheet" href="/footer-style.css">
+
+  <style>
+    :root {
+      --schrift: Georgia, "Times New Roman", Times, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--schrift);
+      line-height: 1.65;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin: 0 0 8px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 12px;
+    }
+    .stand {
+      font-size: 0.85rem;
+      margin: 0 0 32px;
+      color: #333333;
+    }
+    h2 {
+      font-size: 1.2rem;
+      margin: 40px 0 10px;
+    }
+    h3 {
+      font-size: 1rem;
+      margin: 20px 0 6px;
+    }
+    p, li { margin: 0 0 8px; }
+    ul { padding-left: 22px; }
+    a { color: #000000; }
+    .platzhalter {
+      background: #fff3b0;
+      border: 1px dashed #000000;
+      padding: 1px 6px;
+    }
+    .hinweis-entwicklung {
+      margin: 0 0 32px;
+      padding: 14px 16px;
+      border: 1px solid #000000;
+      background: #f5f5f5;
+      font-size: 0.85rem;
+    }
+    nav.inhaltsverzeichnis {
+      margin: 0 0 32px;
+      padding: 16px 20px;
+      border: 1px solid #000000;
+      font-size: 0.9rem;
+    }
+    nav.inhaltsverzeichnis ol {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+  </style>
 </head>
-
 <body>
-    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, sans-serif;">
-        <h1>Datenschutzerklärung</h1>
-        <p><strong>Platzhalter</strong> – hier folgt die Datenschutzerklärung nach Art. 13 DSGVO,
-            insbesondere zu: Firebase Authentication, Firestore, verwendeten Cookies/
-            Local Storage, TOTP-2FA-Daten und ggf. eingebundenen Drittanbietern.</p>
-    </main>
-    <script src="/footer-config.js"></script>
-    <script src="/footer-app.js" defer></script>
-</body>
+  <main>
 
+    <p class="hinweis-entwicklung">
+      Entwicklungshinweis (vor Live-Gang entfernen): Dieser Text ist ein
+      Entwurf auf Basis deiner Angaben, <strong>keine Rechtsberatung</strong>.
+      Gelb markierte Felder (<span class="platzhalter">Beispiel</span>) musst
+      du noch ausfüllen. Da hier personenbezogene Daten (E-Mail-Adressen,
+      Lernfortschritt) verarbeitet werden und Firebase (Google, USA) genutzt
+      wird, empfehle ich, den fertigen Text einmal von einer
+      Datenschutz-Beratungsstelle oder einem auf DSGVO spezialisierten
+      Generator (z. B. e-recht24, Dr. Schwenke) gegenprüfen zu lassen, bevor
+      die Seite live geht. Eine Liste offener Fragen, die noch in diesen
+      Text einfließen sollten, findest du in der Antwort im Chat.
+    </p>
+
+    <h1>Datenschutzerklärung</h1>
+    <p class="stand">Stand: <span class="platzhalter">TT.MM.JJJJ</span> — Version <span class="platzhalter">1.0</span></p>
+
+    <nav class="inhaltsverzeichnis" aria-label="Inhaltsverzeichnis">
+      <strong>Inhalt</strong>
+      <ol>
+        <li><a href="#verantwortliche-stelle">Verantwortliche Stelle</a></li>
+        <li><a href="#allgemeines">Allgemeines zur Datenverarbeitung</a></li>
+        <li><a href="#hosting">Hosting und Server-Logfiles (Firebase)</a></li>
+        <li><a href="#konto">Registrierung und Nutzerkonto</a></li>
+        <li><a href="#lernfortschritt">Lernfortschritt und Nutzungsdaten</a></li>
+        <li><a href="#inaktivitaet">Inaktivität und Löschung des Kontos</a></li>
+        <li><a href="#cookies">Cookies und lokale Speicherung</a></li>
+        <li><a href="#recaptcha">Bot-Schutz (Firebase App Check / reCAPTCHA)</a></li>
+        <li><a href="#drittanbieter">Weitergabe von Daten an Dritte</a></li>
+        <li><a href="#aenderungen">Änderungen dieser Erklärung und der AGB</a></li>
+        <li><a href="#rechte">Deine Rechte</a></li>
+        <li><a href="#sicherheit">Datensicherheit</a></li>
+        <li><a href="#kontakt">Kontakt für Datenschutzanfragen</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="verantwortliche-stelle">1. Verantwortliche Stelle</h2>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>
+      <span class="platzhalter">Vor- und Nachname</span><br>
+      <span class="platzhalter">Straße und Hausnummer</span><br>
+      <span class="platzhalter">Postleitzahl und Ort</span><br>
+      E-Mail: <span class="platzhalter">kontakt@deine-domain.de</span>
+    </p>
+    <p>(Identisch mit den Angaben im <a href="/footer-impressum.html">Impressum</a>.)</p>
+
+    <h2 id="allgemeines">2. Allgemeines zur Datenverarbeitung</h2>
+    <p>
+      Wir verarbeiten personenbezogene Daten unserer Nutzerinnen grundsätzlich
+      nur, soweit dies zur Bereitstellung einer funktionsfähigen Plattform
+      sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung
+      erfolgt regelmäßig nur nach Einwilligung der Nutzerin oder auf Basis
+      einer gesetzlichen Erlaubnis, insbesondere:
+    </p>
+    <ul>
+      <li>Art. 6 Abs. 1 lit. b DSGVO — zur Erfüllung des Nutzungsvertrags (z. B. Kontoführung, Login)</li>
+      <li>Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse (z. B. Sicherheit, Missbrauchsschutz, technisch notwendiger Bot-Schutz)</li>
+      <li>Art. 6 Abs. 1 lit. a DSGVO — Einwilligung, sofern gesondert eingeholt (z. B. bei künftigen Cookie-Einstellungen)</li>
+    </ul>
+    <p>
+      Wir sammeln grundsätzlich <strong>keine</strong> Daten, die nicht für
+      Betrieb, Sicherheit oder Funktion der Plattform notwendig sind. Es
+      findet kein Tracking zu Werbe- oder Analysezwecken statt.
+    </p>
+
+    <h2 id="hosting">3. Hosting und Server-Logfiles (Firebase)</h2>
+    <p>
+      Diese Website wird über <strong>Firebase Hosting</strong> betrieben, ein
+      Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin
+      4, Irland (Muttergesellschaft: Google LLC, USA). Beim Aufruf der Seite
+      verarbeitet Firebase automatisch technische Informationen, die dein
+      Browser übermittelt, u. a.:
+    </p>
+    <ul>
+      <li>IP-Adresse (gekürzt/anonymisiert, soweit von Firebase unterstützt)</li>
+      <li>Datum und Uhrzeit der Anfrage</li>
+      <li>Browsertyp und -version, Betriebssystem</li>
+      <li>aufgerufene Seite/Datei</li>
+    </ul>
+    <p>
+      Diese Server-Logfiles sind für den technischen Betrieb notwendig
+      (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an
+      Betrieb und Sicherheit der Plattform) und werden nicht mit anderen
+      Datenquellen zusammengeführt.
+    </p>
+    <p>
+      <strong>Übermittlung in die USA:</strong> Google verarbeitet Daten auch
+      in den USA. Die Übermittlung stützt sich auf das
+      EU-US Data Privacy Framework bzw. auf von der EU-Kommission genehmigte
+      Standardvertragsklauseln, die Google im Rahmen seiner
+      Auftragsverarbeitungsvereinbarung anbietet.
+      <span class="platzhalter">
+        Bitte prüfen/bestätigen: Welche Firebase-Region hast du für Firestore
+        gewählt (z. B. europe-west3/Frankfurt oder ein US-Standort)? Das
+        beeinflusst, wie genau dieser Absatz formuliert werden sollte.
+      </span>
+    </p>
+
+    <h2 id="konto">4. Registrierung und Nutzerkonto</h2>
+    <p>
+      Für die Nutzung von Lern-Hub ist ein Nutzerkonto erforderlich. Bei der
+      Registrierung über <strong>Firebase Authentication</strong> erheben wir:
+    </p>
+    <ul>
+      <li>E-Mail-Adresse</li>
+      <li>Passwort (wird von Firebase Authentication als Hash gespeichert, nicht im Klartext)</li>
+      <li>Zeitpunkt der Kontoerstellung</li>
+      <li>Zeitpunkt der letzten Anmeldung (siehe Abschnitt 6, Inaktivität)</li>
+    </ul>
+    <p>
+      Ein echter Name ist für die Registrierung <strong>nicht</strong>
+      erforderlich. Es wird kein öffentliches Profil und kein Anzeigename
+      erstellt — andere Nutzerinnen sehen deine Daten nicht.
+    </p>
+    <p>
+      Als Betreiberin kann ich als Administratorin die E-Mail-Adresse eines
+      Kontos einsehen (z. B. zur Kontoverwaltung oder bei Support-Anfragen).
+      Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).
+    </p>
+
+    <h2 id="lernfortschritt">5. Lernfortschritt und Nutzungsdaten</h2>
+    <p>
+      Während der Nutzung werden Lerndaten in unserer Datenbank
+      (Firebase Firestore) gespeichert, u. a.:
+    </p>
+    <ul>
+      <li>bearbeitete Quizfragen und gegebene Antworten</li>
+      <li>Lernfortschritt und Quiz-Ergebnisse/Statistiken</li>
+    </ul>
+    <p>
+      Diese Daten sind <strong>ausschließlich für die jeweilige Nutzerin
+      selbst sichtbar</strong>. Als Administratorin sehe ich diese
+      individuellen Lernstatistiken nicht ein. Rechtsgrundlage: Art. 6
+      Abs. 1 lit. b DSGVO (Bereitstellung der Kernfunktion der Plattform).
+    </p>
+
+    <h2 id="inaktivitaet">6. Inaktivität und Löschung des Kontos</h2>
+    <p>
+      Wir speichern den Zeitpunkt deiner letzten Anmeldung, um inaktive
+      Konten erkennen zu können. Ist ein Konto <strong>12 Monate</strong>
+      lang nicht genutzt worden, kann es gelöscht werden. Vor der Löschung
+      erhältst du <strong>drei Warn-E-Mails</strong> an die hinterlegte
+      Adresse, mit der Möglichkeit, dich erneut anzumelden und die Löschung
+      dadurch zu verhindern.
+      <span class="platzhalter">
+        Bitte ergänzen: In welchem zeitlichen Abstand vor der Löschung werden
+        die drei Mails verschickt (z. B. 60/30/7 Tage vorher)?
+      </span>
+    </p>
+    <p>
+      Du kannst dein Konto und die damit verbundenen Daten jederzeit selbst
+      löschen. <span class="platzhalter">Beschreibung/Link ergänzen, wo genau in der App das geht (z. B. Konto-Einstellungen).</span>
+    </p>
+
+    <h2 id="cookies">7. Cookies und lokale Speicherung</h2>
+    <p>
+      Wir setzen <strong>keine</strong> Cookies zu Analyse- oder
+      Marketingzwecken ein. Technisch notwendig sind ausschließlich:
+    </p>
+    <ul>
+      <li>
+        Sitzungsdaten von Firebase Authentication (zur Anmeldung), diese
+        werden je nach Browser über lokale Speichermechanismen (z. B.
+        IndexedDB/Local Storage) statt klassischer Cookies verwaltet.
+      </li>
+      <li>
+        ggf. ein Sicherheitscookie/Token durch Firebase App Check (siehe
+        Abschnitt 8).
+      </li>
+    </ul>
+    <p>
+      Für diese technisch notwendigen Speichervorgänge ist keine Einwilligung
+      per Cookie-Banner erforderlich (§ 25 Abs. 2 TTDSG). Sollte künftig ein
+      Cookie-Banner mit optionalen Kategorien eingeführt werden, wird dieser
+      Abschnitt entsprechend ergänzt und ein Link zu den
+      Cookie-Einstellungen hier eingefügt.
+    </p>
+
+    <h2 id="recaptcha">8. Bot-Schutz (Firebase App Check / reCAPTCHA)</h2>
+    <p>
+      Zum Schutz vor automatisiertem Missbrauch (z. B. massenhafte
+      Fake-Registrierungen) setzen wir <strong>Firebase App Check</strong>
+      mit dem Dienst <strong>Google reCAPTCHA v3</strong> ein. Dabei werden
+      technische Merkmale deines Geräts und deines Verhaltens auf der Seite
+      an Google übermittelt, um zwischen menschlichen Nutzerinnen und Bots zu
+      unterscheiden. Es findet keine für dich sichtbare Interaktion (z. B.
+      Bilderrätsel) statt.
+    </p>
+    <p>
+      Anbieter: Google Ireland Limited. Weitere Informationen:
+      <a href="https://policies.google.com/privacy" rel="noopener noreferrer">
+        https://policies.google.com/privacy
+      </a>
+      und
+      <a href="https://www.google.com/recaptcha/about/" rel="noopener noreferrer">
+        https://www.google.com/recaptcha/about/
+      </a>.
+      Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
+      der Sicherheit unserer Plattform).
+    </p>
+
+    <h2 id="drittanbieter">9. Weitergabe von Daten an Dritte</h2>
+    <p>
+      Eine Übermittlung deiner Daten an Dritte erfolgt nur, soweit dies für
+      den Betrieb der Plattform notwendig ist:
+    </p>
+    <ul>
+      <li>
+        <strong>Google / Firebase</strong> (Google Ireland Limited) als
+        Auftragsverarbeiter für Hosting, Authentifizierung, Datenbank
+        (Firestore) und Bot-Schutz (App Check/reCAPTCHA). Mit Google besteht
+        ein Auftragsverarbeitungsvertrag im Rahmen der Firebase-Nutzungsbedingungen.
+      </li>
+    </ul>
+    <p>
+      Ein Verkauf deiner Daten an Dritte oder eine Nutzung zu
+      Werbezwecken findet nicht statt. Es werden keine KI-Dienste zur
+      Verarbeitung deiner Daten eingesetzt.
+    </p>
+
+    <h2 id="aenderungen">10. Änderungen dieser Erklärung und der AGB</h2>
+    <p>
+      Ändern sich diese Datenschutzerklärung oder die AGB wesentlich,
+      informieren wir dich per E-Mail an die hinterlegte Adresse. Bei der
+      nächsten Anmeldung musst du den geänderten Bedingungen zustimmen,
+      bevor du die Plattform weiter nutzen kannst. Stimmst du nicht zu,
+      wirst du zur Startseite zurückgeleitet und kannst die Plattform bis
+      zur Zustimmung nicht weiter nutzen.
+    </p>
+
+    <h2 id="rechte">11. Deine Rechte</h2>
+    <p>Du hast im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
+    <ul>
+      <li><strong>Auskunft</strong> über deine bei uns gespeicherten Daten (Art. 15 DSGVO)</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+      <li><strong>Löschung</strong> deiner Daten (Art. 17 DSGVO) — kannst du auch selbstständig über dein Konto veranlassen</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+      <li><strong>Widerspruch</strong> gegen die Verarbeitung, soweit sie auf berechtigtem Interesse beruht (Art. 21 DSGVO)</li>
+      <li>
+        <strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO) — das Recht, die
+        Daten, die du uns bereitgestellt hast, in einem gängigen,
+        maschinenlesbaren Format zu erhalten, um sie z. B. zu einem anderen
+        Anbieter mitzunehmen
+      </li>
+      <li>
+        <strong>Beschwerde bei einer Aufsichtsbehörde</strong> (Art. 77 DSGVO)
+        — zuständig ist in der Regel die Datenschutzaufsichtsbehörde deines
+        Bundeslandes, oder:
+        <span class="platzhalter">Zuständige Aufsichtsbehörde für deinen Sitz ergänzen (Bundesland).</span>
+      </li>
+    </ul>
+    <p>Zur Ausübung dieser Rechte genügt eine formlose Nachricht an die unten stehende Kontaktadresse.</p>
+
+    <h2 id="sicherheit">12. Datensicherheit</h2>
+    <p>
+      Wir setzen technische und organisatorische Maßnahmen ein, um deine
+      Daten gegen Verlust, Missbrauch und unbefugten Zugriff zu schützen,
+      u. a.:
+    </p>
+    <ul>
+      <li>Verschlüsselte Übertragung (HTTPS/TLS)</li>
+      <li>Passwort-Speicherung ausschließlich als Hash durch Firebase Authentication</li>
+      <li>Zugriff auf Nutzerdaten nur für die Betreiberin als Administratorin</li>
+      <li>Bot-Schutz gegen automatisierten Missbrauch (siehe Abschnitt 8)</li>
+    </ul>
+
+    <h2 id="kontakt">13. Kontakt für Datenschutzanfragen</h2>
+    <p>
+      Bei Fragen zur Verarbeitung deiner personenbezogenen Daten oder zur
+      Ausübung deiner Rechte wende dich an:
+    </p>
+    <p>
+      <span class="platzhalter">kontakt@deine-domain.de</span>
+    </p>
+
+  </main>
+
+  <script src="/footer-config.js"></script>
+  <script src="/footer-app.js" defer></script>
+</body>
 </html>
