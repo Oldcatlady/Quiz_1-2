@@ -224,6 +224,46 @@
         .password-rules li {
             margin: 3px 0;
         }
+        /* ------------------------------------------------------------
+   AGB UND DATENSCHUTZ
+   ------------------------------------------------------------ */
+
+.legal-consent {
+    margin-top: 4px;
+    padding: 14px 16px;
+    background: #f6f7fb;
+    border-radius: 16px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.legal-consent label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 8px 0;
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.legal-consent input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    cursor: pointer;
+}
+
+.legal-consent a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.legal-consent a:hover {
+    color: var(--accent-hover);
+}
 
         /* ------------------------------------------------------------
        10. HAUPTBUTTON
@@ -440,6 +480,37 @@
                     minlength="8">
             </div>
 
+            <!-- ============================================================
+     AGB UND DATENSCHUTZ
+     Wird nur bei der Registrierung angezeigt.
+     Beide Checkboxen müssen aktiviert werden.
+     ============================================================ -->
+
+<div id="legal-consent" class="legal-consent" hidden>
+
+    <label>
+        <input type="checkbox" id="agb-checkbox">
+        <span>
+            Ich akzeptiere die
+            <a href="agb.html" target="_blank" rel="noopener noreferrer">
+                AGB
+            </a>.
+        </span>
+    </label>
+
+    <label>
+        <input type="checkbox" id="privacy-checkbox">
+        <span>
+            Ich habe die
+            <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">
+                Datenschutzerklärung
+            </a>
+            gelesen.
+        </span>
+    </label>
+
+</div>
+
             <!-- --------------------------------------------------------
            PASSWORT VERGESSEN
            --------------------------------------------------------
@@ -625,6 +696,14 @@
             document.getElementById("tab-register");
         const forgotBtn =
             document.getElementById("forgot-password-btn");
+        const legalConsent =
+    document.getElementById("legal-consent");
+
+const agbCheckbox =
+    document.getElementById("agb-checkbox");
+
+const privacyCheckbox =
+    document.getElementById("privacy-checkbox");
 
         // ============================================================
         // 5. AKTUELLEN MODUS SPEICHERN
@@ -683,6 +762,12 @@
               Passwortregeln nur bei Registrierung anzeigen.
             */
             passwordRules.hidden = !isRegister;
+            legalConsent.hidden = !isRegister;
+
+if (!isRegister) {
+    agbCheckbox.checked = false;
+    privacyCheckbox.checked = false;
+}
 
             /*
               Der Text des Hauptbuttons verändert sich.
@@ -972,6 +1057,21 @@
                         );
                         return;
                     }
+                    /*
+  AGB und Datenschutzerklärung müssen
+  vor der Registrierung bestätigt werden.
+*/
+
+if (
+    !agbCheckbox.checked ||
+    !privacyCheckbox.checked
+) {
+    showMessage(
+        "Bitte akzeptiere die AGB und Datenschutzerklärung.",
+        "error"
+    );
+    return;
+}
                 }
 
                 // ========================================================
